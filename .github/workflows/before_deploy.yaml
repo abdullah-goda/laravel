@@ -1,4 +1,4 @@
-name: Deploy
+name: Prepare_Machine
 
 on:
   push:
