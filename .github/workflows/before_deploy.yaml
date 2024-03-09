@@ -33,7 +33,7 @@ jobs:
           cd laravel
           ls
           pwd
-          sudo apt install composer
+          sudo apt install composer -y
           sudo service apache2 restart
           composer install
               '
