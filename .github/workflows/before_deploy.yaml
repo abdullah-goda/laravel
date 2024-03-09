@@ -33,7 +33,7 @@ jobs:
           php -r "unlink('composer-setup.php');"
           sudo service apache2 restart
           composer install
-          > EOF
+           EOF
           chmod 700 script.sh
           bash script.sh
           sudo service apache2 restart
