@@ -21,7 +21,9 @@ jobs:
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
-          git clone https://github.com/laravel/laravel.git
-          cd laravel
+          cd ~/laravel
+          pwd
+          ls
+          git pull
           php artisan migrate
               '
