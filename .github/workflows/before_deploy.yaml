@@ -21,6 +21,9 @@ jobs:
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
               # Now we have got the access of EC2 and we will start the deploy .
+
+          cat << EOF > script.sh
+          #!/bin/bash
           cd laravel
           ls
           pwd
@@ -28,6 +31,11 @@ jobs:
           php -r "if (hash_file('sha384', 'composer-setup.php') === '756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
           sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
           php -r "unlink('composer-setup.php');"
+          sudo service apache2 restart
+          composer install
+          > EOF
+          chmod 700 script.sh
+          bash script.sh
           sudo service apache2 restart
           composer install
               '
