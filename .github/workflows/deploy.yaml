@@ -1,6 +1,7 @@
 name: Deploy
 
 on:
+  workflow_dispatch:
   push:
     # branches: [ dev ]
 
@@ -34,8 +35,7 @@ jobs:
           cd laravel
           ls
           pwd
-          sudo apt install composer
-          sudo mv composer.phar /usr/local/bin/composer
+          sudo apt install composer -y
           sudo service apache2 restart
           composer install
               '
